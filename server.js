@@ -6,7 +6,7 @@ var fortunes = [
     "Rivers need springs.",
     "Do not fear what you don't know.",
     "You will have a pleasant surprise.",
-    "Whenever possible, keep it simple.",
+    "Whenever possible, keep it simple."
 ];
 
 var express = require("express");
@@ -14,6 +14,8 @@ var port=3000;
 var app=express();
 var handlebars = require("express3-handlebars")
                         .create({defaultLayout:'main'});
+
+var fortune = require("./lib/fortune");
 app.engine('handlebars',handlebars.engine);
 app.set('view engine', 'handlebars');
 
@@ -27,8 +29,7 @@ app.get('/', function(req, res){
     res.render('home');
 });
 app.get('/about', function(req, res){
-    var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-    res.render('about', { fortune : randomFortune});
+    res.render('about', {fortune: fortune.getFortune()});
 });
 
 //404 page.
