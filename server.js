@@ -29,7 +29,7 @@ app.get('/', function(req, res){
     res.render('home');
 });
 app.get('/about', function(req, res){
-    res.render('about', {fortune: fortune.getFortune()});
+    res.render('aboutus', {fortune: fortune.getFortune()});
 });
 
 //404 page.
